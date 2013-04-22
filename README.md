@@ -1,4 +1,4 @@
-Minion NMAP Plugin
+Minion Arachni Plugin
 ===================
 
-This is a plugin for Minion that executes the NMAP tool. It assumes NMAP is installed on your system and that is is on the system PATH. If you use Ubuntu, Debian, Redhat or Fedora you can simply install the `nmap` package through `yum` or `apt-get`.
+This is a plugin for Minion that executes the Arachni tool. It assumes Arachni is installed on your system and that is is on the system PATH.  The arachni_rpcd process must be running. It currently relies on the experimental branch of Arachni.
