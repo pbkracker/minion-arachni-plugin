@@ -8,12 +8,12 @@ install_requires = [
     'minion.plugin_service'
 ]
 
-setup(name="minion.nmap_plugin",
+setup(name="minion.arachni_plugin",
       version="0.1",
-      description="NMAP Plugin for Minion",
-      url="https://github.com/ygjb/minion",
-      author="Mozilla",
-      author_email="minion@mozilla.com",
+      description="Arachni Plugin for Minion",
+      url="https://github.com/pbkracker/minion-arachni-plugin/",
+      author="Patrick Kelley",
+      author_email="patrick.kelley@hackerdojo.com",
       packages=['minion', 'minion.plugins'],
       namespace_packages=['minion', 'minion.plugins'],
       include_package_data=True,
