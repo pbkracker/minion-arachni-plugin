@@ -11,8 +11,9 @@ fi
 
 # This scripts expects to find nmap on the path
 
-if [ ! `which nmap` ]; then
-	echo "abort: no nmap found on your path"
+# This check might not be necessary.
+if [ ! `which arachni` ]; then
+	echo "abort: no arachni found on your path"
 	exit 1
 fi
 
