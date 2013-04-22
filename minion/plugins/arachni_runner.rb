@@ -56,15 +56,24 @@ service.scan url: 'http://testfire.net',
              #follow_subdomains: true
 
 
-puts 'Running.'
-while service.busy?
-    puts "Percent Done: ["+ service.progress["stats"]["progress"].to_s + "]"
-    puts "Current Status: ["+ service.status + "]"
-    if not instance.call("framework.issues_as_hash") == []
-      puts "Issues: [\n" + instance.call("framework.issues_as_hash") + "\n]"
-      abort("Found an issue.  Just die for now.")
+while sleep 1
+    progress = service.progress( with: :issues )
+
+    puts "Percent Done:   [#{progress['stats']['progress']}%]"
+    puts "Current Status: [#{progress['status'].capitalize}]"
+
+    if progress['issues'].any?
+        puts
+        puts 'Issues thus far:'
+        progress['issues'].each do |issue|
+            puts "  * #{issue['name']} on '#{issue['url']}'."
+        end
     end
-    sleep 1
+
+    puts '-' * 50
+
+    # we're done
+    break if !progress['busy']
 end
 
 puts "-----[REPORT FOLLOWS]-----"
