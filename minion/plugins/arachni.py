@@ -129,7 +129,6 @@ class ArachniPlugin(ExternalProcessPlugin):
             with open("stderr.txt", "w") as f:
                 f.write(self.stderr)
             self.report_artifacts("Arachni Output", ["stdout.txt", "stderr.txt"])
-            self.callbacks.report_issues(self.format_issues())
             self.callbacks.report_finish()
         else:
             self.report_finish("FAILED")
