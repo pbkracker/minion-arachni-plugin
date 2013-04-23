@@ -30,7 +30,35 @@ class ArachniPlugin(ExternalProcessPlugin):
         self.stderr = ""
         #url = urlparse(self.configuration['target'])
         self.report_progress(10, 'Starting Arachni')
-        self.spawn(self.ARACHNI_NAME, self.ARACHNI_ARGS + [self.configuration['target']])
+                # Pull some variables from the plan configuration
+        if self.configuration.has_key('target'):
+             self.ARACHNI_ARGS.append("--url")
+             self.ARACHNI_ARGS.append(self.configuration['target'])
+
+        if self.configuration.has_key('audit_links') and self.configuration['audit_links'].lower() == 'true':
+             self.ARACHNI_ARGS.append("-links")
+
+        if self.configuration.has_key('link_count'):
+             self.ARACHNI_ARGS.append("--link_count")
+             self.ARACHNI_ARGS.append(self.configuration['link_count'])
+
+        if self.configuration.has_key('audit_forms') and self.configuration['audit_forms'].lower() == 'true':
+             self.ARACHNI_ARGS.append("-forms")
+
+        if self.configuration.has_key('audit_cookies') and self.configuration['audit_cookies'].lower() == 'true':
+             self.ARACHNI_ARGS.append("-cookies")
+
+        if self.configuration.has_key('audit_headers') and self.configuration['audit_headers'].lower() == 'true':
+             self.ARACHNI_ARGS.append("-headers")
+
+        if self.configuration.has_key('modules'):
+             self.ARACHNI_ARGS.append("--modules")
+             self.ARACHNI_ARGS.append(self.configuration['modules'])
+
+        if self.configuration.has_key('follow_subdomains') and self.configuration['follow_subdomains'].lower() == 'true':
+             self.ARACHNI_ARGS.append("--follow-sub-domains")
+
+        self.spawn(self.ARACHNI_NAME, self.ARACHNI_ARGS )
 
     def format_issues(self, issues):
         issues_formal = []
