@@ -8,6 +8,13 @@ require 'pp'
 # This currently relies on the experimental branch of arachni.
 # https://github.com/Arachni/arachni/tree/experimental#source
 
+url_to_scan = 'http://testfire.net'
+if ARGV.size > 0
+        url_to_scan = ARGV[0]
+end
+puts "Arachni will scan this URL: " + url_to_scan
+
+
 # TODO: Read cookies from a file or from the argument list.
 static_cookies = [
     {
@@ -39,7 +46,7 @@ service = Arachni::RPC::RemoteObjectMapper.new( instance, 'service' )
 
 #puts static_cookies
 
-service.scan url: 'http://testfire.net',
+service.scan url: url_to_scan,
              audit_links: true,
              audit_forms: true,
              link_count_limit: 5,
