@@ -60,6 +60,12 @@ class ArachniPlugin(ExternalProcessPlugin):
 
         self.spawn(self.ARACHNI_NAME, self.ARACHNI_ARGS )
 
+    def do_stop(self):
+        # Send a nice TERM signal so the ruby script can cleanup.
+        # Otherwise it will leave zombie arachni_rpcd processes around.
+        self.process.signalProcess('TERM')
+
+
     def format_issues(self, issues):
         issues_formal = []
         print "ISSUES: {}".format(issues)
