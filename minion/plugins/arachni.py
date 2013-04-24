@@ -35,28 +35,29 @@ class ArachniPlugin(ExternalProcessPlugin):
              self.ARACHNI_ARGS.append("--url")
              self.ARACHNI_ARGS.append(self.configuration['target'])
 
-        if self.configuration.has_key('audit_links') and self.configuration['audit_links'].lower() == 'true':
+        if self.configuration.has_key('audit_links') and self.configuration['audit_links']:
              self.ARACHNI_ARGS.append("-links")
 
         if self.configuration.has_key('link_count'):
              self.ARACHNI_ARGS.append("--link_count")
-             self.ARACHNI_ARGS.append(self.configuration['link_count'])
+             self.ARACHNI_ARGS.append(str(self.configuration['link_count']))
 
-        if self.configuration.has_key('audit_forms') and self.configuration['audit_forms'].lower() == 'true':
+        if self.configuration.has_key('audit_forms') and self.configuration['audit_forms']:
              self.ARACHNI_ARGS.append("-forms")
 
-        if self.configuration.has_key('audit_cookies') and self.configuration['audit_cookies'].lower() == 'true':
+        if self.configuration.has_key('audit_cookies') and self.configuration['audit_cookies']:
              self.ARACHNI_ARGS.append("-cookies")
 
-        if self.configuration.has_key('audit_headers') and self.configuration['audit_headers'].lower() == 'true':
+        if self.configuration.has_key('audit_headers') and self.configuration['audit_headers']:
              self.ARACHNI_ARGS.append("-headers")
 
         if self.configuration.has_key('modules'):
              self.ARACHNI_ARGS.append("--modules")
              self.ARACHNI_ARGS.append(self.configuration['modules'])
 
-        if self.configuration.has_key('follow_subdomains') and self.configuration['follow_subdomains'].lower() == 'true':
+        if self.configuration.has_key('follow_subdomains') and self.configuration['follow_subdomains']:
              self.ARACHNI_ARGS.append("--follow-sub-domains")
+
 
         self.spawn(self.ARACHNI_NAME, self.ARACHNI_ARGS )
 
