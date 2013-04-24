@@ -88,6 +88,15 @@ service = Arachni::RPC::RemoteObjectMapper.new( instance, 'service' )
 
 #puts static_cookies
 
+trap("TERM") do
+  print "\nReceived Term Signal.  Shutting down the service..."
+  # If this is not done, we will leave extra arachni_rpcd processes lying around.
+  service.shutdown
+  puts "Done. Exiting"
+  exit
+end
+
+
 service.scan url: options[:url],
              audit_links: options[:links],
              link_count_limit: options[:linkcount],
