@@ -18,28 +18,28 @@ opt_parser = OptionParser.new do |opt|
   options[:modules] = 'xss*'
   options[:subdomains] = false
 
-  opt.on("-url", "--url URL", "URL to scan") do |url|
+  opt.on("-u", "--url URL", "URL to scan") do |url|
     options[:url] = url
   end
-  opt.on("-links", "Audit Links?") do
+  opt.on("-a", "--audit-links", "Audit Links?") do
     options[:links] = true
   end
-  opt.on("-lc", "--link_count 5", "Links to follow") do |link_count|
-    options[:linkcount] = link_count
+  opt.on("-l", "--link-count 5", "Links to follow") do |link_count|
+    options[:linkcount] = link_count.to_i
   end
-  opt.on("-forms", "Audit Forms?") do
+  opt.on("-f", "--audit-forms", "Audit Forms?") do
     options[:forms] = true
   end
-  opt.on("-cookies", "Audit Cookies?") do
+  opt.on("-c", "--audit-cookies", "Audit Cookies?") do
     options[:audit_cookies] = true
   end
-  opt.on("-headers", "Audit Headers?") do
+  opt.on("-h", "--audit-headers", "Audit Headers?") do
     options[:headers] = true
   end
-  opt.on("-mods", "--modules MODS", "Arachni Modules to use") do |mods|
+  opt.on("-m", "--modules MODS", "Arachni Modules to use") do |mods|
     options[:modules] = mods
   end
-  opt.on("-fsd", "--follow-sub-domains", "Follow Sub-Domains?") do
+  opt.on("-s", "--follow-sub-domains", "Follow Sub-Domains?") do
     options[:subdomains] = true
   end
 
@@ -50,6 +50,8 @@ opt_parser = OptionParser.new do |opt|
 end
 
 opt_parser.parse!
+pp options
+
 
 
 # You must have arachni_rpcd running for this to work.
