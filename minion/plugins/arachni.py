@@ -36,20 +36,20 @@ class ArachniPlugin(ExternalProcessPlugin):
              self.ARACHNI_ARGS.append(self.configuration['target'])
 
         if self.configuration.has_key('audit_links') and self.configuration['audit_links']:
-             self.ARACHNI_ARGS.append("-links")
+             self.ARACHNI_ARGS.append("--audit-links")
 
         if self.configuration.has_key('link_count'):
-             self.ARACHNI_ARGS.append("--link_count")
+             self.ARACHNI_ARGS.append("--link-count")
              self.ARACHNI_ARGS.append(str(self.configuration['link_count']))
 
         if self.configuration.has_key('audit_forms') and self.configuration['audit_forms']:
-             self.ARACHNI_ARGS.append("-forms")
+             self.ARACHNI_ARGS.append("--audit-forms")
 
         if self.configuration.has_key('audit_cookies') and self.configuration['audit_cookies']:
-             self.ARACHNI_ARGS.append("-cookies")
+             self.ARACHNI_ARGS.append("--audit-cookies")
 
         if self.configuration.has_key('audit_headers') and self.configuration['audit_headers']:
-             self.ARACHNI_ARGS.append("-headers")
+             self.ARACHNI_ARGS.append("--audit-headers")
 
         if self.configuration.has_key('modules'):
              self.ARACHNI_ARGS.append("--modules")
@@ -57,7 +57,6 @@ class ArachniPlugin(ExternalProcessPlugin):
 
         if self.configuration.has_key('follow_subdomains') and self.configuration['follow_subdomains']:
              self.ARACHNI_ARGS.append("--follow-sub-domains")
-
 
         self.spawn(self.ARACHNI_NAME, self.ARACHNI_ARGS )
 
