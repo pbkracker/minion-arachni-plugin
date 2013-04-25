@@ -37,7 +37,7 @@ opt_parser = OptionParser.new do |opt|
     options[:headers] = true
   end
   opt.on("-m", "--modules MODS", "Arachni Modules to use") do |mods|
-    options[:modules] = mods
+    options[:modules] = mods.split(", ")
   end
   opt.on("-s", "--follow-sub-domains", "Follow Sub-Domains?") do
     options[:subdomains] = true
