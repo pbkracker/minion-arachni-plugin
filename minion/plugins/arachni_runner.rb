@@ -125,7 +125,7 @@ while sleep 1
         puts
         puts 'Issues thus far:'
         progress['issues'].each do |issue|
-            puts "  * #{issue['name']} on '#{issue['url']}'."
+            puts "  * #{issue['name']} for input #{issue['var']} on '#{issue['url']}'."
         end
     end
 
