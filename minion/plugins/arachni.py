@@ -130,12 +130,13 @@ class ArachniPlugin(ExternalProcessPlugin):
             self.in_issues = True
             
         if self.in_issues:
-            issues_line = r"\s+\*\s(.*)\son\s(.*)\."
+            issues_line = r"\s+\*\s(.*)\sfor\sinput\s(.*)\son\s(.*)\."
             patt = re.compile(issues_line, re.I|re.U)
             for m in patt.finditer(str(data)):
                 name = m.group(1)
-                url = m.group(2)
-                combined_issue = "Reason: {} URL: {}".format(name, url)
+                var = m.group(2)
+                url = m.group(3)
+                combined_issue = "Reason: {} Var: {} URL: {}".format(name, var, url)
                 if combined_issue not in self.reported_issues:
                     self.report_issues(self.format_issues([combined_issue]))
                     self.reported_issues.append(combined_issue)
